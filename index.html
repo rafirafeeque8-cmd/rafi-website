@@ -4,17 +4,298 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rafi - Digital Creator</title>
+  <meta name="theme-color" content="#050811">
+  <meta name="description" content="Rafi Digital Creator — Modern Websites, Mobile Apps & AI Automation.">
+  <title>Rafi Digital Creator | Websites • Apps • AI Systems</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0f172a; color: #fff; text-align: center; }
-    h1 { margin-bottom: 8px; }
-    p { color: #94a3b8; margin-bottom: 24px; }
-    .wa-btn { background-color: #25d366; color: white; padding: 12px 24px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); }
+    :root {
+      --bg: #050811;
+      --card-bg: rgba(14, 21, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --cyan: #00f2fe;
+      --purple: #9d4edd;
+      --green: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(157, 78, 221, 0.12) 0%, transparent 45%);
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 8, 17, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .logo-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #050811;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(105deg, var(--cyan), #4facfe);
+      color: #030a12;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: #a8f5ff;
+      margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      background: linear-gradient(110deg, var(--cyan), #4facfe, var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Cards Grid */
+    .services {
+      padding: 60px 0 100px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 35px;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 242, 254, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin: 15px 0 10px;
+      color: #fff;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to Rafi's Website</h1>
-  <p>Connect directly for business or inquiries:</p>
-  <a class="wa-btn" href="https://wa.me/918778936325" target="_blank">Chat on WhatsApp</a>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo-badge">R</div>
+        <span>Rafi Digital Creator</span>
+      </div>
+      <div>
+        <a href="https://wa.me/918778936325?text=Hi%20Rafi,%20I%20am%20interested%20in%20your%20services" target="_blank" class="btn btn-primary">
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="status-dot"></span> Available for New Projects
+      </div>
+      <h1>Building Modern Digital Products <br><span class="highlight">That Deliver Results</span></h1>
+      <p class="hero-desc">
+        Specializing in high-performance websites, mobile app prototypes, video editing, and AI automation workflows tailored for businesses.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/918778936325?text=Hello%20Rafi,%20let's%20discuss%20a%20project" target="_blank" class="btn btn-primary">
+          Start a Project
+        </a>
+        <a href="#services" class="btn btn-outline">
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">What I Do</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Web & UI Development</h3>
+          <p>Clean, mobile-optimized business websites and landing pages built to convert visitors into loyal clients.</p>
+        </div>
+        <div class="card">
+          <h3>App Prototyping</h3>
+          <p>User-friendly interface designs and functional prototypes created with speed, performance, and simplicity.</p>
+        </div>
+        <div class="card">
+          <h3>AI & Automation</h3>
+          <p>Automated chat workflows, WhatsApp business bots, and modern digital creative solutions to scale your reach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Rafi Digital Creator. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
