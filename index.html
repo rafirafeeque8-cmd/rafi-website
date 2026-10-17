@@ -2,300 +2,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050811">
-  <meta name="description" content="Rafi Digital Creator — Modern Websites, Mobile Apps & AI Automation.">
-  <title>Rafi Digital Creator | Websites • Apps • AI Systems</title>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rafi Digital Creator | Websites • Apps • AI Automation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #050811;
-      --card-bg: rgba(14, 21, 38, 0.75);
+      --bg: #0b0f19;
+      --card-bg: rgba(255, 255, 255, 0.04);
       --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
+      --primary: #38bdf8;
+      --accent: #818cf8;
+      --text: #f1f5f9;
       --muted: #94a3b8;
-      --cyan: #00f2fe;
-      --purple: #9d4edd;
-      --green: #10b981;
+      --green: #22c55e;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 25%, rgba(157, 78, 221, 0.12) 0%, transparent 45%);
-      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Navigation */
-    nav {
+    /* Navbar */
+    header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(5, 8, 17, 0.85);
       backdrop-filter: blur(12px);
+      background: rgba(11, 15, 25, 0.85);
       border-bottom: 1px solid var(--card-border);
+      z-index: 100;
+      padding: 1rem 1.5rem;
     }
 
-    .nav-inner {
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 70px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
+      color: #fff;
+      text-decoration: none;
     }
 
-    .logo-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
+    .brand-badge {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      color: #0b0f19;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #050811;
-      font-weight: 900;
-      font-size: 1.2rem;
+      font-weight: 800;
     }
 
-    /* Buttons */
-    .btn {
+    .btn-wa {
+      background: #25d366;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      font-size: 0.9rem;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .btn-primary {
-      background: linear-gradient(105deg, var(--cyan), #4facfe);
-      color: #030a12;
-    }
-
-    .btn-primary:hover {
+    .btn-wa:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
-    }
-
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      color: #fff;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
     }
 
     /* Hero Section */
     .hero {
-      padding: 80px 0 60px;
+      max-width: 900px;
+      margin: 4rem auto 3rem;
+      padding: 0 1.5rem;
       text-align: center;
     }
 
-    .hero-tag {
+    .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      color: #a8f5ff;
-      margin-bottom: 24px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
     }
 
-    .status-dot {
+    .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 10px var(--green);
+      animation: pulse 1.8s infinite;
     }
 
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      line-height: 1.15;
-      margin-bottom: 20px;
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
-    .highlight {
-      background: linear-gradient(110deg, var(--cyan), #4facfe, var(--purple));
+    .hero h1 {
+      font-size: 2.7rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
       -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
     }
 
-    .hero-desc {
+    .hero p {
       font-size: 1.15rem;
       color: var(--muted);
-      max-width: 650px;
-      margin: 0 auto 35px;
+      max-width: 680px;
+      margin: 0 auto 2rem;
     }
 
-    .hero-buttons {
+    .cta-group {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
-    /* Cards Grid */
-    .services {
-      padding: 60px 0 100px;
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #fff;
+      padding: 0.85rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 0.85rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Container & Headings */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
     }
 
     .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 35px;
       text-align: center;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
     }
 
+    .section-desc {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* Grid Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
+      gap: 1.5rem;
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      transition: all 0.25s ease;
+      border-radius: 14px;
+      padding: 1.8rem;
+      transition: 0.25s ease;
     }
 
     .card:hover {
-      border-color: rgba(0, 242, 254, 0.3);
+      border-color: rgba(56, 189, 248, 0.4);
       transform: translateY(-4px);
     }
 
     .card h3 {
-      font-size: 1.3rem;
-      margin: 15px 0 10px;
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
       color: #fff;
     }
 
     .card p {
       color: var(--muted);
       font-size: 0.95rem;
+      margin-bottom: 1rem;
     }
 
+    .card-list {
+      list-style: none;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+
+    .card-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-list li::before {
+      content: "✔";
+      color: #38bdf8;
+      font-size: 0.8rem;
+    }
+
+    /* Work / Portfolio Section */
+    .work-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Lead CTA Box */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(129, 140, 248, 0.15));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 18px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .cta-banner h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 0 auto 1.8rem;
+    }
+
+    /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
-      padding: 30px 0;
+      padding: 2rem 1.5rem;
       text-align: center;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav>
-    <div class="container nav-inner">
-      <div class="brand">
-        <div class="logo-badge">R</div>
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span class="brand-badge">R</span>
         <span>Rafi Digital Creator</span>
-      </div>
-      <div>
-        <a href="https://wa.me/918778936325?text=Hi%20Rafi,%20I%20am%20interested%20in%20your%20services" target="_blank" class="btn btn-primary">
-          Chat on WhatsApp
-        </a>
-      </div>
+      </a>
+      <!-- Apna 10-digit WhatsApp number daalein -->
+      <a href="https://wa.me/918778936325?text=Hi%20Rafi,%20I%20am%20interested%20in%20your%20services!" target="_blank" class="btn-wa">
+        Chat on WhatsApp
+      </a>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-tag">
-        <span class="status-dot"></span> Available for New Projects
+  <main>
+    <section class="hero">
+      <div class="status-pill">
+        <span class="dot"></span> Available for New Projects
       </div>
-      <h1>Building Modern Digital Products <br><span class="highlight">That Deliver Results</span></h1>
-      <p class="hero-desc">
-        Specializing in high-performance websites, mobile app prototypes, video editing, and AI automation workflows tailored for businesses.
-      </p>
-      <div class="hero-buttons">
-        <a href="https://wa.me/918778936325?text=Hello%20Rafi,%20let's%20discuss%20a%20project" target="_blank" class="btn btn-primary">
-          Start a Project
-        </a>
-        <a href="#services" class="btn btn-outline">
-          Explore Services
-        </a>
+      <h1>Building Modern Digital Products <span class="gradient-text">That Drive Growth</span></h1>
+      <p>I build high-converting landing pages, clean app interfaces, AI automation bots, and professional marketing video assets tailored for your business.</p>
+      
+      <div class="cta-group">
+        <a href="https://wa.me/918778936325?text=Hi%20Rafi,%20I%20want%20to%20discuss%20a%20project" target="_blank" class="btn-primary">Start a Project</a>
+        <a href="#services" class="btn-secondary">Explore Services</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="section-title">What I Do</h2>
+    <!-- Services Section -->
+    <section class="container" id="services">
+      <h2 class="section-title">What I Offer</h2>
+      <p class="section-desc">Tailor-made digital solutions designed to help your brand get more inquiries and sales.</p>
+      
       <div class="grid">
         <div class="card">
-          <h3>Web & UI Development</h3>
-          <p>Clean, mobile-optimized business websites and landing pages built to convert visitors into loyal clients.</p>
+          <h3>Web & Landing Pages</h3>
+          <p>Clean, ultra-fast websites designed to convert cold traffic into inquiries.</p>
+          <ul class="card-list">
+            <li>Single page business portfolios</li>
+            <li>Mobile-first, responsive layouts</li>
+            <li>WhatsApp & call lead capture integration</li>
+          </ul>
         </div>
+
         <div class="card">
-          <h3>App Prototyping</h3>
-          <p>User-friendly interface designs and functional prototypes created with speed, performance, and simplicity.</p>
+          <h3>UI/UX & App Prototypes</h3>
+          <p>Turn raw product ideas into interactive, visually engaging designs.</p>
+          <ul class="card-list">
+            <li>Modern user interface styling</li>
+            <li>Interactive workflow prototyping</li>
+            <li>Clean architecture & user journey</li>
+          </ul>
         </div>
+
         <div class="card">
-          <h3>AI & Automation</h3>
-          <p>Automated chat workflows, WhatsApp business bots, and modern digital creative solutions to scale your reach.</p>
+          <h3>AI Chatbots & Automation</h3>
+          <p>Automate repetitive inquiries so you never lose a potential customer.</p>
+          <ul class="card-list">
+            <li>Automated WhatsApp lead responders</li>
+            <li>Customer support chatbot setups</li>
+            <li>Business workflow integrations</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Recent Highlights / Projects -->
+    <section class="container">
+      <h2 class="section-title">Featured Solutions</h2>
+      <p class="section-desc">A glimpse of the functional work and systems I build.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="work-tag">Landing Page & Showcase</div>
+          <h3>Local Business Portfolio</h3>
+          <p>Complete product catalog showcase for manufacturing and hardware brands with instant WhatsApp order generation.</p>
+        </div>
+
+        <div class="card">
+          <div class="work-tag">Automation</div>
+          <h3>WhatsApp Smart Assistant</h3>
+          <p>Integrated automated customer interaction system handling pricing requests and scheduling consultations 24/7.</p>
+        </div>
+
+        <div class="card">
+          <div class="work-tag">Creative Design</div>
+          <h3>Promotional Reels & Video Assets</h3>
+          <p>Engaging social video layouts and short-form marketing materials optimized for Meta and Instagram ads.</p>
+        </div>
+      </div>
+
+      <!-- Conversion Banner -->
+      <div class="cta-banner">
+        <h2>Have an Idea or Need a Digital Upgrade?</h2>
+        <p>Let's turn your vision into an active, polished product. Direct communication, fast turnarounds.</p>
+        <a href="https://wa.me/918778936325?text=Hello%20Rafi,%20let's%20discuss%20my%20business%20requirements" target="_blank" class="btn-wa" style="padding: 0.8rem 2rem; font-size: 1rem;">
+          Discuss on WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>© 2026 Rafi Digital Creator. All rights reserved.</p>
-    </div>
+    <p>© 2026 Rafi Digital Creator. All rights reserved.</p>
   </footer>
 
 </body>
 </html>
+
+
