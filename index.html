@@ -1,422 +1,326 @@
-<h1>Welcome to Rafi Website</h1></h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rafi Digital Creator | Websites • Apps • AI Automation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(255, 255, 255, 0.04);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --primary: #38bdf8;
-      --accent: #818cf8;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --green: #22c55e;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafi Digital Creator | 3D Solutions & WhatsApp AI</title>
+    <!-- Three.js for 3D Graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+        /* 3D Canvas Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    /* Navbar */
-    header {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(12px);
-      background: rgba(11, 15, 25, 0.85);
-      border-bottom: 1px solid var(--card-border);
-      z-index: 100;
-      padding: 1rem 1.5rem;
-    }
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
 
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00ff88, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #fff;
-      text-decoration: none;
-    }
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
 
-    .brand-badge {
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      color: #0b0f19;
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-    }
+        nav a:hover {
+            color: #00ff88;
+        }
 
-    .btn-wa {
-      background: #25d366;
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      border-radius: 999px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+        }
 
-    .btn-wa:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-    }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    /* Hero Section */
-    .hero {
-      max-width: 900px;
-      margin: 4rem auto 3rem;
-      padding: 0 1.5rem;
-      text-align: center;
-    }
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
 
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      color: var(--green);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      margin-bottom: 1.5rem;
-    }
+        .cta-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 1.8s infinite;
-    }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
 
-    @keyframes pulse {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
-      100% { opacity: 1; transform: scale(1); }
-    }
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+        }
 
-    .hero h1 {
-      font-size: 2.7rem;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.02em;
-    }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00ff88, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .gradient-text {
-      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
 
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto 2rem;
-    }
+        .service-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
 
-    .cta-group {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #00ff88;
+        }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #0284c7, #2563eb);
-      color: #fff;
-      padding: 0.85rem 1.8rem;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
 
-    .btn-primary:hover {
-      opacity: 0.92;
-      transform: translateY(-2px);
-    }
+        .service-card p {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--card-border);
-      color: #fff;
-      padding: 0.85rem 1.8rem;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
+        .card-link {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
+        .card-link:hover {
+            text-decoration: underline;
+        }
 
-    /* Container & Headings */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto 5rem;
-      padding: 0 1.5rem;
-    }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: #07090f;
+            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .section-title {
-      text-align: center;
-      font-size: 1.9rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
 
-    .section-desc {
-      text-align: center;
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      font-size: 0.95rem;
-    }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
 
-    /* Grid Cards */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 1.8rem;
-      transition: 0.25s ease;
-    }
-
-    .card:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-      transform: translateY(-4px);
-    }
-
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.7rem;
-      color: #fff;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    .card-list {
-      list-style: none;
-      font-size: 0.88rem;
-      color: #cbd5e1;
-    }
-
-    .card-list li {
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-list li::before {
-      content: "✔";
-      color: #38bdf8;
-      font-size: 0.8rem;
-    }
-
-    /* Work / Portfolio Section */
-    .work-tag {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #38bdf8;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    /* Lead CTA Box */
-    .cta-banner {
-      background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(129, 140, 248, 0.15));
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 18px;
-      padding: 3rem 1.5rem;
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    .cta-banner h2 {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .cta-banner p {
-      color: var(--muted);
-      max-width: 550px;
-      margin: 0 auto 1.8rem;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--card-border);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    @media (max-width: 640px) {
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <header>
-    <div class="nav-container">
-      <a href="#" class="brand">
-        <span class="brand-badge">R</span>
-        <span>Rafi Digital Creator</span>
-      </a>
-      <!-- Apna 10-digit WhatsApp number daalein -->
-      <a href="https://wa.me/918778936325?text=Hi%20Rafi,%20I%20am%20interested%20in%20your%20services!" target="_blank" class="btn-wa">
-        Chat on WhatsApp
-      </a>
-    </div>
-  </header>
+    <!-- 3D Background Container -->
+    <div id="canvas-container"></div>
 
-  <!-- Hero Section -->
-  <main>
+    <!-- Header -->
+    <header>
+        <div class="logo">Rafi Digital Creator</div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="https://wa.me/918778936325?text=Hi%20Rafeeque,%20I%20want%20to%20inquire%20about%20your%20services" target="_blank">Contact WhatsApp</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="status-pill">
-        <span class="dot"></span> Available for New Projects
-      </div>
-      <h1>Building Modern Digital Products <span class="gradient-text">That Drive Growth</span></h1>
-      <p>I build high-converting landing pages, clean app interfaces, AI automation bots, and professional marketing video assets tailored for your business.</p>
-      
-      <div class="cta-group">
-        <a href="https://wa.me/918778936325?text=Hi%20Rafi,%20I%20want%20to%20discuss%20a%20project" target="_blank" class="btn-primary">Start a Project</a>
-        <a href="#services" class="btn-secondary">Explore Services</a>
-      </div>
+        <h1>Next-Gen 3D Web & WhatsApp AI Automation</h1>
+        <p>Empower your brand with immersive 3D websites, intelligent WhatsApp auto-responders, and viral content reel creation.</p>
+        <a href="https://wa.me/918778936325?text=Hi%20Rafeeque,%20I%20want%20to%20connect%20for%20your%20services" target="_blank" class="cta-btn">
+            💬 Chat on WhatsApp (+91 8778936325)
+        </a>
     </section>
 
     <!-- Services Section -->
-    <section class="container" id="services">
-      <h2 class="section-title">What I Offer</h2>
-      <p class="section-desc">Tailor-made digital solutions designed to help your brand get more inquiries and sales.</p>
-      
-      <div class="grid">
-        <div class="card">
-          <h3>Web & Landing Pages</h3>
-          <p>Clean, ultra-fast websites designed to convert cold traffic into inquiries.</p>
-          <ul class="card-list">
-            <li>Single page business portfolios</li>
-            <li>Mobile-first, responsive layouts</li>
-            <li>WhatsApp & call lead capture integration</li>
-          </ul>
+    <section id="services" class="services">
+        <h2 class="section-title">What I Offer</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>🌐 3D Interactive Websites</h3>
+                <p>High-performance, visually stunning 3D web applications and landing pages built to captivate your audience.</p>
+                <a href="https://wa.me/918778936325?text=Hi%20Rafeeque,%20I%20need%20a%203D%20Website" target="_blank" class="card-link">Enquire Now &rarr;</a>
+            </div>
+            <div class="service-card">
+                <h3>🤖 WhatsApp Auto Bots</h3>
+                <p>Automate customer support and sales lead capture 24/7 with customized AI auto-responder pipelines.</p>
+                <a href="https://wa.me/918778936325?text=Hi%20Rafeeque,%20I%20need%20a%20WhatsApp%20Auto%20Bot" target="_blank" class="card-link">Enquire Now &rarr;</a>
+            </div>
+            <div class="service-card">
+                <h3>🎬 Content & Reel Creation</h3>
+                <p>Engaging short-form video editing, promotional reels, and AI-assisted multimedia content to boost engagement.</p>
+                <a href="https://wa.me/918778936325?text=Hi%20Rafeeque,%20I%20need%20Content%20Reel%20Creation" target="_blank" class="card-link">Enquire Now &rarr;</a>
+            </div>
         </div>
-
-        <div class="card">
-          <h3>UI/UX & App Prototypes</h3>
-          <p>Turn raw product ideas into interactive, visually engaging designs.</p>
-          <ul class="card-list">
-            <li>Modern user interface styling</li>
-            <li>Interactive workflow prototyping</li>
-            <li>Clean architecture & user journey</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>AI Chatbots & Automation</h3>
-          <p>Automate repetitive inquiries so you never lose a potential customer.</p>
-          <ul class="card-list">
-            <li>Automated WhatsApp lead responders</li>
-            <li>Customer support chatbot setups</li>
-            <li>Business workflow integrations</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <!-- Recent Highlights / Projects -->
-    <section class="container">
-      <h2 class="section-title">Featured Solutions</h2>
-      <p class="section-desc">A glimpse of the functional work and systems I build.</p>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Rafi Digital Creator. All rights reserved. | Contact: +91 8778936325</p>
+    </footer>
 
-      <div class="grid">
-        <div class="card">
-          <div class="work-tag">Landing Page & Showcase</div>
-          <h3>Local Business Portfolio</h3>
-          <p>Complete product catalog showcase for manufacturing and hardware brands with instant WhatsApp order generation.</p>
-        </div>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918778936325?text=Hi%20Rafeeque,%20I%20visited%20your%20website%20and%20want%20to%20connect" class="whatsapp-float" target="_blank">
+        💬
+    </a>
 
-        <div class="card">
-          <div class="work-tag">Automation</div>
-          <h3>WhatsApp Smart Assistant</h3>
-          <p>Integrated automated customer interaction system handling pricing requests and scheduling consultations 24/7.</p>
-        </div>
+    <!-- Three.js 3D Animation Script -->
+    <script>
+        const container = document.getElementById('canvas-container');
+        
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
 
-        <div class="card">
-          <div class="work-tag">Creative Design</div>
-          <h3>Promotional Reels & Video Assets</h3>
-          <p>Engaging social video layouts and short-form marketing materials optimized for Meta and Instagram ads.</p>
-        </div>
-      </div>
+        // Create 3D Torus Knot Geometry
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshStandardMaterial({
+            color: 0x00ff88,
+            wireframe: true,
+            roughness: 0.3,
+            metalness: 0.8
+        });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
 
-      <!-- Conversion Banner -->
-      <div class="cta-banner">
-        <h2>Have an Idea or Need a Digital Upgrade?</h2>
-        <p>Let's turn your vision into an active, polished product. Direct communication, fast turnarounds.</p>
-        <a href="https://wa.me/918778936325?text=Hello%20Rafi,%20let's%20discuss%20my%20business%20requirements" target="_blank" class="btn-wa" style="padding: 0.8rem 2rem; font-size: 1rem;">
-          Discuss on WhatsApp
-        </a>
-      </div>
-    </section>
-  </main>
+        // Add Lights
+        const pointLight = new THREE.PointLight(0x00bfff, 3, 50);
+        pointLight.position.set(20, 20, 20);
+        scene.add(pointLight);
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 Rafi Digital Creator. All rights reserved.</p>
-  </footer>
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
 
+        camera.position.z = 30;
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.005;
+            torusKnot.rotation.y += 0.008;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
-
-
